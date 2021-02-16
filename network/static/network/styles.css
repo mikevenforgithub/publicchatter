@@ -1,0 +1,78 @@
+.navbar { 
+    background-color: lightblue; 
+    
+} 
+
+.centerbody {
+
+    background-color: white;
+    margin-bottom: 40px;
+
+
+}
+
+#alltweets {
+
+  height: 200px;
+
+}
+
+#compose-view {
+
+      margin-bottom: 50px;
+
+}
+
+#commentsection {
+
+    height: 40px;
+}
+
+#likesection{
+      
+    height: 10px;
+
+}
+
+#twtinnertop {
+    
+    height: 20px;
+
+}
+
+#twtinnerbottom {
+
+    height: 20px;
+}
+
+.profile {
+
+    margin-top: 20px;
+
+
+}
+
+#twtprof {
+    
+    min-height: 200px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    margin-bottom: 10px;
+
+}
+
+#time {
+
+    display: inline-block;
+    margin: 10px;
+    color: blue;
+
+}
+
+
+ul {
+    list-style-type: none;
+    margin-left: -10px;
+}
+

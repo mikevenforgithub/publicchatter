@@ -1,0 +1,81 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block head %}
+<link href="{% static 'network/styles.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+
+
+<div class="centerbody">
+
+    <div class="profile">
+        <img alt="Twitter" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU"
+        width="70" height="70">
+        
+        <h1>{{usr.username}}</h1>
+        
+        {% if usr != request.user %}
+            {% if usr not in ls %}
+             <form method="POST" action="/following/{{usr}}">
+                {% csrf_token %}
+             <button style="margin-bottom: 10px;">Follow</button>
+            </form>
+            {% else %}
+             <form method="POST" action="/notfollowing/{{usr}}">
+                {% csrf_token %}
+             <button style="margin-bottom: 10px;">Unfollow</button>
+             </form>
+            {% endif %}
+        {% endif %}
+        
+        <p>Followed: &nbsp; {{followed}} &nbsp;&nbsp;  Following: &nbsp; {{following}}</p>
+
+    </div>
+    <hr>
+
+    <div class="profileposts">
+     {% for post in posts %}
+        <div id="twtprof" class="container tweet"> 
+
+            <div id="innertop">
+                 <h2>{{usr.username}}</h2>
+            </div>
+            <div id="innerbottom">
+                <h3>{{post.body}}</h3>
+                <p>{{post.timestamp}}</p>
+            </div>
+            {% if not post.id  in liked  %}
+            <div id="likesection">
+                <button class="text-primary"  id="like-btn-{{post.id}}" onclick="like_tweet('{{ post.id }}')">Like</button>   
+            </div>
+            {% else %}
+            <div id="likesection">
+                <button class="text-primary"  id="like-btn-{{post.id}}" onclick="like_tweet('{{ post.id }}')">Unlike</button>   
+            </div>
+            {% endif %}
+
+            <br>
+            <div id="like-count-{{post.id}}">{{ post.likes }}</div>
+          
+        </div>
+     {% endfor %}
+    </div>
+    {% if tweets.has_previous %}
+    <a href="{% url 'profile' %}?page={{tweets.previous_page_number}}">Previous Page</a>
+    {% endif %}
+    {% if tweets.has_next %}
+    <a href="{% url 'profiel' %}?page={{tweets.next_page_number}}">Next Page</a>
+    {% endif %}
+
+</div>
+
+
+
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

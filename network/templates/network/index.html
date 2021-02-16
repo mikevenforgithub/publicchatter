@@ -1,0 +1,86 @@
+{% extends "network/layout.html" %}
+{% load static %}
+{% block head %}
+<link href="{% static 'network/styles.css' %}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+
+<div class="centerbody">
+     
+
+
+    <div id="compose-view">
+        <h3>Write Tweet!</h3>
+        <form id="compose-form">
+            
+            <input disabled class="form-control" value="{{ request.user }}">
+            <textarea class="form-control" id="compose-body" placeholder="Write Your Tweet"></textarea>
+            <input type="submit" id="sendit" onclick="send_tweet()" class="btn btn-primary"/>
+        </form>
+    </div>
+
+    <div class="alltweets">
+
+        
+            <div id="tweetlist" >
+            {% for post in tweets %}
+                <div class="li">
+                <div id="twtprof" class="container tweet"> 
+    
+                    <div>
+                        <h2><a href="/home/{{post.user}}"></h2>{{post.user}}</a></h2>
+                    </div>
+
+                    <div id="postbodycontainer{{post.id}}">
+                     <h3 id="bodyoftweet{{post.id}}" data="{{post.id}}">{{post.body}}</h3>
+                    <p>{{post.timestamp}}</p>
+                    </div>
+                    
+
+                {% if request.user == post.user %}
+
+                    <div id="edit">
+                     <button class="editbutton" id="editbutton{{post.id}}" onclick="edit_tweet('{{ post.id }}')">Edit</button>
+                    </div>
+
+                {% endif %}
+                    
+                    {% if not post.id  in liked  %}
+                    <div id="likesection">
+                        <button class="text-primary"  id="like-btn-{{post.id}}" onclick="like_tweet('{{ post.id }}')">Like</button>   
+                    </div>
+                    {% else %}
+                    <div id="likesection">
+                        <button class="text-primary"  id="like-btn-{{post.id}}" onclick="like_tweet('{{ post.id }}')">Unlike</button>   
+                    </div>
+                    {% endif %}
+                    
+                    
+                    <br>
+                    <div id="like-count-{{post.id}}">{{ post.likes }}</div>
+                    
+                
+                </div>
+                </div>
+            {% endfor %}
+            </div> 
+       
+    {% if tweets.has_previous %}
+    <a href="{% url 'index' %}?page={{tweets.previous_page_number}}">Previous Page</a>
+    {% endif %}
+    {% if tweets.has_next %}
+    <a href="{% url 'index' %}?page={{tweets.next_page_number}}">Next Page</a>
+    {% endif %}
+
+    </div>
+
+
+</div>
+
+
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'network/index.js' %}"></script>    
+
+{% endblock %}
