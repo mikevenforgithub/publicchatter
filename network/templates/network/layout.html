@@ -10,10 +10,9 @@
     </head>
     <body>
 
-        <nav class="navbar navbar-expand-lg navbar-light" >
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: chocolate;">
             <a class="navbar-brand" href="https://help.twitter.com/"></a>
-            <img alt="Twitter" src="https://help.twitter.com/content/dam/help-twitter/brand/logo.png"
-            width="70" height="70">
+            <div id="chattertitle" alt="Twitter" style="width: 160px; height:70px;">Chatter</div>
             <div style="height: 70px;">
               <ul class="navbar-nav mr-auto">
                 {% if user.is_authenticated %}
@@ -41,16 +40,17 @@
                 {% endif %}
               </ul>
             </div>
-          </nav>
+        </nav>
 
         <div class="row">
-            <div class="col">
+            <div class="col" id="leftads" style="background-color: rgba(0, 255, 255, 0.454);">
             </div>
-            <div class="body col-6">
+            <div class="body col-6" style="z-index:1; position:relative;">
                 {% block body %}
                 {% endblock %}
             </div>
-            <div class="col">
+            <div class="col" id="rightads" style="background-color: rgba(0, 255, 255, 0.454);">
+                
             </div>
         </div>    
     </body>

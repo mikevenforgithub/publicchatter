@@ -9,13 +9,13 @@
      
 
 
-    <div id="compose-view">
-        <h3>Write Tweet!</h3>
+    <div id="compose-view" style="margin-top: 20px;">
+        <h3>Post Your Thoughts!</h3>
         <form id="compose-form">
             
             <input disabled class="form-control" value="{{ request.user }}">
-            <textarea class="form-control" id="compose-body" placeholder="Write Your Tweet"></textarea>
-            <input type="submit" id="sendit" onclick="send_tweet()" class="btn btn-primary"/>
+            <textarea class="form-control" id="compose-body" placeholder="Write Your Message"></textarea>
+            <input id="inputbutton" type="submit" id="sendit" onclick="send_tweet()" class="btn btn-primary"/>
         </form>
     </div>
 
@@ -25,7 +25,7 @@
             <div id="tweetlist" >
             {% for post in tweets %}
                 <div class="li">
-                <div id="twtprof" class="container tweet"> 
+                <div id="twtprof" class="container "> 
     
                     <div>
                         <h2><a href="/home/{{post.user}}"></h2>{{post.user}}</a></h2>
@@ -58,6 +58,7 @@
                     
                     <br>
                     <div id="like-count-{{post.id}}">{{ post.likes }}</div>
+                    <div>Likes</div>
                     
                 
                 </div>

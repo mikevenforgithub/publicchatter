@@ -11,13 +11,14 @@
 <div class="centerbody">
 
     <div id="compose-view">
-        <h3>Write Tweet!</h3>
+        <h3>Post Your Thoughts!</h3>
         <form id="compose-form">
             
             <input disabled class="form-control" value="{{ request.user }}">
             <textarea class="form-control" id="compose-body" placeholder="Write Your Tweet"></textarea>
-            <input type="submit" id="sendit" onclick="send_tweet()" class="btn btn-primary"/>
+            <input id="inputbutton" type="submit" id="sendit" onclick="send_tweet()" class="btn btn-primary"/>
         </form>
+        <h3 style="margin-top: 20px; text-align:center;">Thoughts of people you follow!</h3>
     </div>
 
 
